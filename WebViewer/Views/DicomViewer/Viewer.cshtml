@@ -1,0 +1,73 @@
+﻿@model WebViewer.Models.DicomViewData
+
+@{
+    ViewBag.Title = "Viewer";
+}
+
+<script>
+
+  $(function() {
+
+    $( "#tabs" ).tabs();
+
+  });
+
+</script>
+
+
+<h2>Viewer</h2>
+
+<div id="tabs">
+    <ul>
+        <li ><a href="#tabs-1">Data Viewer</a></li>
+        <li ><a href="#tabs-2">Image Viewer</a></li>
+    </ul>
+    <div id="tabs-1"><table class="table">
+    <tr>
+        <th>
+            TAG
+        </th>
+        <th>
+            VR
+        </th>
+        <th>
+            Length
+        </th>
+        <th>
+            Value
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.DataItemList)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tag)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vr)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Length)
+            </td>
+            <td style="overflow:hidden">
+                @Html.DisplayFor(modelItem => item.Value)
+            </td>
+            <td></td>
+        </tr>
+    }
+
+</table></div>
+    <div id="tabs-2">
+        <table>
+            @foreach(var item in Model.ImageItemList)
+            {
+                <tr>
+                    <td><img src="@item.SmallImage" /> </td>
+                    <td><img src="@item.BigImage" /> </td>
+                </tr>
+            }
+        </table>
+    </div>
+    </div>
