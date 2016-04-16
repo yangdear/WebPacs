@@ -18,6 +18,7 @@ namespace WebViewer.Models
         }
     }
 
+
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
@@ -29,5 +30,10 @@ namespace WebViewer.Models
         {
             return new ApplicationDbContext();
         }
+        public DbSet<Hospital> Hospitals { get; set; }
+        public DbSet<Deptment> Deptments { get; set; }
+        public DbSet<Patient> Patients { get; set; }
+        public DbSet<PacsReport> PacsReports { get; set; }
+
     }
 }
