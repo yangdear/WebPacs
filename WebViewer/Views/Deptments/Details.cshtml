@@ -1,0 +1,26 @@
+﻿@model WebViewer.Models.Deptment
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Deptment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.DeptmentName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DeptmentName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.DeptmentId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

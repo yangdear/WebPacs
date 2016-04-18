@@ -1,0 +1,58 @@
+﻿@model WebViewer.Models.Patient
+
+@{
+    ViewBag.Title = "患者详细信息";
+}
+
+<h2>患者详细信息</h2>
+
+<div>
+    <h4>患者详细信息</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientCode)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientCode)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Sex)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Sex)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Birthday)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Birthday)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.RequestDept)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.RequestDept)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("编辑", "Edit", new { id = Model.PatientId }) |
+    @Html.ActionLink("返回患者列表", "Index")
+</p>

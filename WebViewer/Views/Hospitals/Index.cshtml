@@ -1,0 +1,31 @@
+﻿@model IEnumerable<WebViewer.Models.Hospital>
+
+@{
+    ViewBag.Title = "医院列表";
+}
+
+<h2>医院列表</h2>
+
+<p>
+    @Html.ActionLink("添加医院", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.HospitalName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.HospitalName)
+        </td>
+        <td>
+            @Html.ActionLink("删除", "Delete", new { id = item.HospitalId })
+        </td>
+    </tr>
+}
+
+</table>

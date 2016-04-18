@@ -19,14 +19,23 @@ namespace WebViewer.Models
         public virtual ICollection<Patient> Patients { get; set; }
         public virtual ICollection<ApplicationUser> Operators { get; set; }
         public virtual ICollection<Deptment> Deptments { get; set; }
-    }
 
+        public Hospital()
+        {
+            Operators = new HashSet<ApplicationUser>();
+            Deptments = new HashSet<Deptment>();
+            Patients = new HashSet<Patient>();
+        }
+    }
+    
     public class Deptment
     {
         [Key]
         public int DeptmentId { get; set; }
         [Display(Name ="科室名称")]
         public string DeptmentName { get; set; }
+        [Display(Name ="所属医院")]
+        public virtual Hospital Hospital { get; set; }
     }
     public class Patient
     {
@@ -47,6 +56,9 @@ namespace WebViewer.Models
         public string RequestDept { get; set; }
         [Display(Name = "Pacs报告")]
         public virtual ICollection<PacsReport> PacsReports { get; set; }
+        [Display(Name ="所属医院")]
+        public Hospital Hosptial { get; set; }
+
     }
     public class PacsReport
     {
@@ -73,6 +85,10 @@ namespace WebViewer.Models
         public DateTime ReportDate { get; set; }
         [Display(Name ="患者信息")]
         public virtual Patient patient { get; set; }
+        [Display(Name ="上传人")]
+        public virtual ApplicationUser Uploader { get; set; }
+        [Display(Name ="报告人")]
+        public virtual ApplicationUser ReportUser { get; set; }
     }
 
     public class PacsDbInitializer: DropCreateDatabaseAlways<ApplicationDbContext>

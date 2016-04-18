@@ -55,8 +55,6 @@ namespace WebViewer.Controllers
             }
 
         }
-
-
  
         public ActionResult Viewer(string path)
         {

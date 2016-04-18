@@ -227,7 +227,7 @@ namespace WebViewer.Models
             for (int i = 0; i < _image.NumberOfFrames; i++)
             {
                 _image.RenderImage(i).As<Image>().Save(ImagePPath + "\\big" + i.ToString() + ".jpg");
-                SaveThumbnail(i,_image.RenderImage(i).As<Image>(), 32, 32);
+                SaveThumbnail(i,_image.RenderImage(i).As<Image>(), 64, 64);
                 list.Add(new DicomImageItem() {  BigImage = ImageVPath + "\\big" + i.ToString() + ".jpg" ,
                      SmallImage = ImageVPath + "\\small" + i.ToString() + ".jpg"
                 });

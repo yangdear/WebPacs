@@ -1,4 +1,7 @@
 ﻿/// <autosync enabled="true" />
+/// <reference path="../neatupload/neatupload.js" />
+/// <reference path="../neatupload/progress.js" />
+/// <reference path="../neatupload/swfupload.js" />
 /// <reference path="bootstrap.js" />
 /// <reference path="jquery.validate.min.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />
