@@ -17,6 +17,7 @@ namespace WebViewer.Models
         [Display(Name ="医院名称")]
         public string HospitalName { get; set; }
         public virtual ICollection<Patient> Patients { get; set; }
+        
         public virtual ICollection<ApplicationUser> Operators { get; set; }
         public virtual ICollection<Deptment> Deptments { get; set; }
 
@@ -34,6 +35,8 @@ namespace WebViewer.Models
         public int DeptmentId { get; set; }
         [Display(Name ="科室名称")]
         public string DeptmentName { get; set; }
+
+        public int? HospitalId { get; set; }
         [Display(Name ="所属医院")]
         public virtual Hospital Hospital { get; set; }
     }
@@ -56,9 +59,15 @@ namespace WebViewer.Models
         public string RequestDept { get; set; }
         [Display(Name = "Pacs报告")]
         public virtual ICollection<PacsReport> PacsReports { get; set; }
+        public int? HospitalId { get; set; }
         [Display(Name ="所属医院")]
         public Hospital Hosptial { get; set; }
 
+
+        public Patient()
+        {
+            PacsReports = new HashSet<PacsReport>();
+        }
     }
     public class PacsReport
     {
@@ -67,8 +76,9 @@ namespace WebViewer.Models
         [Display(Name = "影像编号")]
         public string PacsCode { get; set; }
         [Display(Name = "检查时间")]
-        [DisplayFormat(DataFormatString ="yyyy-MM-dd hh:mm:ss")]
-        public DateTime CheckDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}")]
+        [DataType(DataType.DateTime)]
+        public DateTime? CheckDate { get; set; }
         [Display(Name = "影像文件")]
         public string DicomFileName { get; set; }
         [Display(Name = "初步诊断")]
@@ -81,17 +91,29 @@ namespace WebViewer.Models
         [Display(Name = "影像诊断")]
         public string ImagingDiagnosis { get; set; }
         [Display(Name ="报告时间")]
-        [DisplayFormat(DataFormatString = "yyyy-MM-dd hh:mm:ss")]
-        public DateTime ReportDate { get; set; }
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd hh:mm:ss}")]
+        [DataType(DataType.DateTime)]
+        public DateTime? ReportDate { get; set; }
+        public int? PatientId { get; set; }
         [Display(Name ="患者信息")]
-        public virtual Patient patient { get; set; }
+        public virtual Patient Patient { get; set; }
         [Display(Name ="上传人")]
         public virtual ApplicationUser Uploader { get; set; }
         [Display(Name ="报告人")]
         public virtual ApplicationUser ReportUser { get; set; }
+        [Display(Name ="已添加报告")]
+        public ReportStateEnum ReportState { get; set; }
     }
 
-    public class PacsDbInitializer: DropCreateDatabaseAlways<ApplicationDbContext>
+
+    
+    public enum ReportStateEnum
+    {
+        reUnknow = 0,
+        rsUploadDicom = 1,
+        rsFilledReport = 2
+    }
+    public class PacsDbInitializer: DropCreateDatabaseIfModelChanges<ApplicationDbContext>
     {
         protected override void Seed(ApplicationDbContext context)
         {

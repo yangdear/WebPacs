@@ -26,5 +26,15 @@ namespace WebViewer.Controllers
 
             return View();
         }
+
+        public ActionResult UploadFile()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult UploadFile(FormCollection model)
+        {
+            return View();
+        }
     }
 }

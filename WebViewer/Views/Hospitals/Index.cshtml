@@ -23,7 +23,9 @@
             @Html.DisplayFor(modelItem => item.HospitalName)
         </td>
         <td>
-            @Html.ActionLink("删除", "Delete", new { id = item.HospitalId })
+            @Html.ActionLink("删除", "Delete", new { id = item.HospitalId })|
+            @Html.ActionLink("操作员列表", "OperatorList", new { id = item.HospitalId })|
+
         </td>
     </tr>
 }

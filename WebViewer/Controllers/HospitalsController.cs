@@ -10,6 +10,7 @@ using WebViewer.Models;
 
 namespace WebViewer.Controllers
 {
+    [Authorize(Roles = "Admin")]
     public class HospitalsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
@@ -115,6 +116,12 @@ namespace WebViewer.Controllers
             return RedirectToAction("Index");
         }
 
+        public ActionResult OperatorList(int id)
+        {
+            ViewBag.HospitalId = id;
+            ViewData.Model = db.Hospitals.Find(id).Operators.ToList();
+            return View();
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

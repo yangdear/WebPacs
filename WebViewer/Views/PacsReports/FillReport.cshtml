@@ -1,0 +1,49 @@
+﻿@model WebViewer.Models.FillReportViewModel
+
+<script>
+    function SavePacsReport()
+    {
+        $.post( "@Url.Action("FillReport", "PacsReports", new { id = Model.PacsReportId })",
+     {
+         ImageDesc: $("#ImageDesc").val(),
+         ImagingDiagnosis: $("#ImagingDiagnosis").val()
+     },
+     function (data) {
+         alert("服务器消息:" + data );
+     });
+
+    }
+</script>
+
+@using (Html.BeginForm("FillReport","PacsReports", new { id = Model.PacsReportId}, FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImageDesc, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model=>model.ImageDesc, new { rows=2, cols=20, style= "width:300px;height:100px" })
+                @*<textarea id="ImageDesc" name="ImageDesc" rows="2" cols="20" style="width:300px;height:100px"></textarea>*@
+               
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ImagingDiagnosis, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.TextAreaFor(model => model.ImagingDiagnosis, new { rows = 2, cols = 20, style = "width:300px;height:100px" })
+                @*<textarea id="ImagingDiagnosis" name="ImagingDiagnosis" rows="2" cols="20" style="width:300px;height:100px"></textarea>*@
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="button" name="SaveReport" id="SaveReport" onclick="SavePacsReport()" value="保存" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+

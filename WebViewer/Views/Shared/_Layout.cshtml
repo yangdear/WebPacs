@@ -1,7 +1,7 @@
 ﻿<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
@@ -28,7 +28,19 @@
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("主页", "Index", "Home")</li>
                     <li>@Html.ActionLink("关于", "About", "Home")</li>
-                   <li>@Html.ActionLink("医院", "Index", "Hospitals")</li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>@Html.ActionLink("医院", "Index", "Hospitals")</li>
+                            <li>@Html.ActionLink("操作员", "Index", "UserManager")</li>
+                        }
+                        if (User.IsInRole("operator"))
+                        {
+                            <li>@Html.ActionLink("患者信息", "Index", "Patients")</li>
+                            <li>@Html.ActionLink("PACS报告", "Index", "PacsReports")</li>
+                        }
+                    }
                     <li>@Html.ActionLink("联系方式", "Contact", "Home")</li>
                 </ul>
                 @Html.Partial("_LoginPartial")

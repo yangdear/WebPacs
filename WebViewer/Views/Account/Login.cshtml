@@ -41,9 +41,9 @@
                         <input type="submit" value="登录" class="btn btn-default" />
                     </div>
                 </div>
-                <p>
+                @*<p>
                     @Html.ActionLink("注册为新用户", "Register")
-                </p>
+                </p>*@
                 @* 在为密码重置功能启用帐户确认后启用此项
                     <p>
                         @Html.ActionLink("忘记了密码?", "ForgotPassword")
@@ -51,11 +51,11 @@
             }
         </section>
     </div>
-    <div class="col-md-4">
+    @*<div class="col-md-4">
         <section id="socialLoginForm">
             @Html.Partial("_ExternalLoginsListPartial", new ExternalLoginListViewModel { ReturnUrl = ViewBag.ReturnUrl })
         </section>
-    </div>
+    </div>*@
 </div>
 
 @section Scripts {

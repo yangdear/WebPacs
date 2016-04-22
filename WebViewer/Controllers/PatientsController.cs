@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -8,16 +10,42 @@ using System.Web;
 using System.Web.Mvc;
 using WebViewer.Models;
 
+using Microsoft.AspNet.Identity.Owin;
+using Microsoft.Owin.Security;
+
 namespace WebViewer.Controllers
 {
+    [Authorize]
     public class PatientsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        private ApplicationUserManager _userManager;
+        public ApplicationUserManager UserManager
+        {
+            get
+            {
+                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
+            }
+            private set
+            {
+                _userManager = value;
+            }
+        }
+        public PatientsController()
+        { }
+        public PatientsController(ApplicationUserManager userManager)
+        {
+            UserManager = userManager;
+        }
         // GET: Patients
         public ActionResult Index()
         {
-            return View(db.Patients.ToList());
+            List<Patient> list = db.Patients.ToList();
+            foreach (var item in list)
+            {
+                item.Hosptial = db.Hospitals.Find(item.HospitalId);
+            }
+            return View(list);
         }
 
         // GET: Patients/Details/5
@@ -34,7 +62,7 @@ namespace WebViewer.Controllers
             }
             return View(patient);
         }
-
+        [Authorize(Roles ="operator")]
         // GET: Patients/Create
         public ActionResult Create()
         {
@@ -50,6 +78,10 @@ namespace WebViewer.Controllers
         {
             if (ModelState.IsValid)
             {
+                
+                var currentUser = UserManager.FindById(User.Identity.GetUserId());
+                //patient.Hosptial = 
+                patient.Hosptial = db.Hospitals.Find(currentUser.HospitalId); 
                 db.Patients.Add(patient);
                 db.SaveChanges();
                 return RedirectToAction("Index");

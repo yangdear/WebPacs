@@ -12,6 +12,11 @@
 <table class="table">
     <tr>
         <th>
+
+           <label>所在医院</label>
+        </th>
+        <th>
+
             @Html.DisplayNameFor(model => model.PatientCode)
         </th>
         <th>
@@ -32,6 +37,9 @@
 @foreach (var item in Model) {
     <tr>
         <td>
+           @Html.DisplayFor(modelItem => item.Hosptial.HospitalName) 
+        </td>
+        <td>
             @Html.DisplayFor(modelItem => item.PatientCode)
         </td>
         <td>
@@ -49,7 +57,7 @@
         <td>
             @Html.ActionLink("编辑", "Edit", new { id=item.PatientId }) |
             @Html.ActionLink("详情", "Details", new { id=item.PatientId }) |
-            @Html.ActionLink("删除", "Delete", new { id=item.PatientId })
+            @Html.ActionLink("PACS报告", "List", "PacsReports",routeValues: new { id = item.PatientId }, htmlAttributes:new { })
         </td>
     </tr>
 }

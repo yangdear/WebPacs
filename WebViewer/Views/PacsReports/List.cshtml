@@ -1,0 +1,130 @@
+﻿@model IEnumerable<WebViewer.Models.PacsReport>
+@using WebViewer.Models;
+@{
+    ViewBag.Title = "患者报告列表";
+    Patient p = (Patient)ViewBag.Patient;
+}
+
+<h2>患者报告列表</h2>
+
+<div>
+    <h4>患者详细信息</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            患者编号
+        </dt>
+
+        <dd>
+            @p.PatientCode
+        </dd>
+
+        <dt>
+           姓名
+        </dt>
+
+        <dd>
+            @p.PatientName
+        </dd>
+
+        <dt>
+            性别
+        </dt>
+
+        <dd>
+            @p.Sex
+        </dd>
+
+      
+        <dt>
+            申请科室
+        </dt>
+
+        <dd>
+           @p.RequestDept
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("添加新报告", "Create", new { id=ViewBag.PatientId})
+</p>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Patient.PatientCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PacsCode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DicomFileName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PreDiagnose)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CheckPoint)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImageDesc)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ImagingDiagnosis)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ReportState)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Patient.PatientCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PacsCode)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.DicomFileName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.PreDiagnose)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CheckPoint)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImageDesc)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ImagingDiagnosis)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.ReportState)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.PacsReportId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.PacsReportId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.PacsReportId })|
+            @Html.ActionLink("查看影像", "DicomView", new { id = item.PacsReportId })|
+
+        </td>
+    </tr>
+}
+
+</table>

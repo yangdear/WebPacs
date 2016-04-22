@@ -6,9 +6,6 @@
 
 <h2>报告列表</h2>
 
-<p>
-    @Html.ActionLink("添加新的PACS报告", "Create")
-</p>
 <table class="table">
     <tr>
         <th>
@@ -26,12 +23,7 @@
         <th>
             @Html.DisplayNameFor(model => model.CheckPoint)
         </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImageDesc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ImagingDiagnosis)
-        </th>
+      
         <th>
             @Html.DisplayNameFor(model => model.ReportDate)
         </th>
@@ -56,17 +48,11 @@
             @Html.DisplayFor(modelItem => item.CheckPoint)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.ImageDesc)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ImagingDiagnosis)
-        </td>
-        <td>
             @Html.DisplayFor(modelItem => item.ReportDate)
         </td>
         <td>
-            @Html.ActionLink("编辑", "Edit", new { id=item.PacsReportId }) |
-            @Html.ActionLink("内容", "Details", new { id=item.PacsReportId }) |
+            @Html.ActionLink("添加报告", "Edit", new { id=item.PacsReportId }) |
+            @Html.ActionLink("查看影像", "Details", new { id=item.PacsReportId }) |
             @Html.ActionLink("删除", "Delete", new { id=item.PacsReportId })
         </td>
     </tr>

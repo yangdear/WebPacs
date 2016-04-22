@@ -16,6 +16,7 @@ namespace WebViewer.Models
             // 在此处添加自定义用户声明
             return userIdentity;
         }
+        public int? HospitalId { get; set; }
         public Hospital Hospital { get; set; }
     }
 
@@ -31,10 +32,49 @@ namespace WebViewer.Models
         {
             return new ApplicationDbContext();
         }
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Hospital>()
+                .HasMany(e => e.Operators)
+                .WithOptional(e => e.Hospital)
+                .HasForeignKey(e => e.HospitalId);
+
+
+
+            modelBuilder.Entity<Hospital>()
+                .HasMany(e => e.Deptments)
+                .WithOptional(e => e.Hospital)
+                .HasForeignKey(e => e.HospitalId);
+
+            modelBuilder.Entity<Hospital>()
+                .HasMany(e => e.Patients)
+                .WithOptional(e => e.Hosptial)
+                .HasForeignKey(e => e.HospitalId);
+
+            modelBuilder.Entity<Patient>()
+                .HasMany(e => e.PacsReports)
+                .WithOptional(e => e.Patient)
+                .HasForeignKey(e => e.PatientId);
+            base.OnModelCreating(modelBuilder);
+        }
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<Deptment> Deptments { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<PacsReport> PacsReports { get; set; }
+        public override IDbSet<ApplicationUser> Users
+        {
+            get
+            {
+               
+                return base.Users;
+            }
 
+            set
+            {
+                base.Users = value;
+            }
+        }
+
+        //public System.Data.Entity.DbSet<WebViewer.Models.ApplicationUser> ApplicationUsers { get; set; }
     }
 }

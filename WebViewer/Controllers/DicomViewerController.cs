@@ -61,7 +61,7 @@ namespace WebViewer.Controllers
             DicomParseHelper helper = new DicomParseHelper(path);
 
             ViewData.Model = new DicomViewData() { DataItemList= helper.GetDataList(),
-                ImageItemList = helper.GetImageList() };
+                ImageItemList = helper.ImageList };
             return View();
         }
 

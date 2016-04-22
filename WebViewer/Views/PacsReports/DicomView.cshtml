@@ -1,0 +1,147 @@
+﻿@model WebViewer.Models.DicomViewData
+@using WebViewer.Models
+
+@{
+    ViewBag.Title = "Viewer";
+}
+
+<script>
+
+    $(function() {
+
+        $( "#tabs" ).tabs();
+
+    });
+
+    var imgs=new Array();
+</script>
+    @for (int i = 0; i < Model.ImageItemList.Count; i++)
+    {
+        var item = Model.ImageItemList[i];
+        <script>
+        imgs[@i] = new Array();
+        imgs[@i][0] = "@item.SmallImage";
+        imgs[@i][1] = "@item.BigImage";
+        </script>
+    }
+
+<script>
+    function SelectImg(index)
+    {
+       document.getElementById("bigImg").src= imgs[index][1];
+    }
+</script>
+
+<style>
+    .imagelist {
+        width: 300px;
+        height: 500px;
+        overflow: scroll;
+        list-style:none;
+    }
+        .imagelist li {
+            float: left;
+            width: 74px;
+            height: 74px;
+            margin-left: 5px;
+           
+            display: inline;
+        }
+    .imagelist li selected
+    {
+        border:dotted
+    }
+</style>
+
+
+<h2>PACS视图</h2>
+
+    @{ 
+        var p = (PacsReport)ViewBag.pacsReport;
+    }
+    
+
+
+
+<div id="tabs">
+    <ul>
+        <li><a href="#tabs-1">数据视图</a></li>
+        <li><a href="#tabs-2">图像视图</a></li>
+        <li><a href="#tabs-3">报告内容</a> </li>
+    </ul>
+    <div id="tabs-1">
+        <table class="table">
+            <tr>
+                <th>
+                    TAG
+                </th>
+                <th>
+                    VR
+                </th>
+                <th>
+                    Length
+                </th>
+                <th>
+                    Value
+                </th>
+                <th></th>
+            </tr>
+
+            @foreach (var item in Model.DataItemList)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Tag)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Vr)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Length)
+                    </td>
+                    <td style="overflow:hidden">
+                        @Html.DisplayFor(modelItem => item.Value)
+                    </td>
+                    <td></td>
+                </tr>
+            }
+
+        </table>
+    </div>
+    <div id="tabs-2">
+        <table>
+            <tr>
+                <td>
+                    <ul class="imagelist">
+                        @for (int i= 0; i < Model.ImageItemList.Count; i++)
+                     {
+                            var item = Model.ImageItemList[i];
+                            <li>
+                                <img src="@item.SmallImage" onclick="SelectImg(@i)"
+                                      style="cursor:pointer; height:70px; width: 70px; margin-top:3px; margin-left:3px" />
+
+                            </li>
+                        }
+                    </ul>
+                </td>
+                <td>
+                    @if(Model.ImageItemList.Count>0)
+                    {
+                        <img id="bigImg" src="@Model.ImageItemList[0].BigImage" />
+                    }
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="tabs-3">
+        @Html.Partial("FillReport", new FillReportViewModel()
+          {
+              PacsReportId = p.PacsReportId,
+              ImageDesc = p.ImageDesc,
+              ImagingDiagnosis = p.ImagingDiagnosis
+          })
+
+
+    </div>
+
+</div>

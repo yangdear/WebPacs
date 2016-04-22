@@ -63,15 +63,14 @@
     </Reference>
     <Reference Include="Dicom.Core, Version=2.1.0.0, Culture=neutral, PublicKeyToken=3a13f649e28eb09a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\fo-dicom\WebViewer\bin\Dicom.Core.dll</HintPath>
+      <HintPath>..\WinViewer\bin\Debug\Dicom.Core.dll</HintPath>
     </Reference>
-    <Reference Include="Dicom.Native, Version=2.1.0.0, Culture=neutral, PublicKeyToken=3a13f649e28eb09a, processorArchitecture=x86">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\fo-dicom\WebViewer\bin\Dicom.Native.dll</HintPath>
+    <Reference Include="Dicom.Native">
+      <HintPath>..\WinViewer\bin\Debug\Dicom.Native.dll</HintPath>
     </Reference>
     <Reference Include="Dicom.Platform, Version=2.1.0.0, Culture=neutral, PublicKeyToken=3a13f649e28eb09a, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\..\fo-dicom\WebViewer\bin\Dicom.Platform.dll</HintPath>
+      <HintPath>..\WinViewer\bin\Debug\Dicom.Platform.dll</HintPath>
     </Reference>
     <Reference Include="Hitone.Web.SqlServerUploader, Version=1.0.0.0, Culture=neutral, PublicKeyToken=dd134ea1c3727369, processorArchitecture=MSIL">
       <HintPath>..\packages\NeatUpload.1.3.26\lib\Hitone.Web.SqlServerUploader.dll</HintPath>
@@ -85,6 +84,42 @@
     <Reference Include="Newtonsoft.Json, Version=8.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.8.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Annotation">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.Annotation.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Basic">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.Basic.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Basic.Codec">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.Basic.Codec.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.DICOM">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.DICOM.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Drawing">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.Drawing.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Font">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.Font.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.JBIG2">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.JBIG2.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.JPEG2000">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.JPEG2000.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.Processing">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.Processing.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.SVG">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.SVG.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.WinformsControl.Twain">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.WinformsControl.Twain.dll</HintPath>
+    </Reference>
+    <Reference Include="RasterEdge.Imaging.XPS">
+      <HintPath>..\..\..\..\..\Pacs\RasterEdge.DocImageSDK9.8.6(release)\Bin\DotNet Framework4.0\x86\RasterEdge.Imaging.XPS.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -204,6 +239,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PacsReportsController.cs" />
     <Compile Include="Controllers\PatientsController.cs" />
+    <Compile Include="Controllers\UserManagerController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -212,7 +248,7 @@
     <Compile Include="Models\PacsModels.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
-    <Compile Include="Models\PatientsController.cs" />
+    <Compile Include="Models\PacsViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -258,6 +294,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="HtmlPage1.html" />
     <Content Include="Manual.html" />
     <Content Include="NeatUpload\cancel.png" />
     <Content Include="NeatUpload\default.css" />
@@ -290,6 +327,7 @@
     <None Include="NeatUpload\NeatUploadConfig.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Properties\PublishProfiles\webpacs.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <None Include="Scripts\jquery-2.2.3.intellisense.js" />
     <Content Include="Scripts\jquery-2.2.3.js" />
@@ -308,7 +346,9 @@
     <Content Include="Scripts\respond.matchmedia.addListener.min.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -365,6 +405,12 @@
     <Content Include="Views\PacsReports\Details.cshtml" />
     <Content Include="Views\PacsReports\Edit.cshtml" />
     <Content Include="Views\PacsReports\Index.cshtml" />
+    <Content Include="Views\UserManager\Index.cshtml" />
+    <Content Include="Views\UserManager\Create.cshtml" />
+    <Content Include="Views\Hospitals\OperatorList.cshtml" />
+    <Content Include="Views\PacsReports\List.cshtml" />
+    <Content Include="Views\PacsReports\DicomView.cshtml" />
+    <Content Include="Views\PacsReports\FillReport.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
