@@ -1,5 +1,6 @@
 ﻿
-using RasterEdge.Imaging.DICOM;
+
+using DicomObjects;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -50,10 +51,12 @@ namespace WebViewer.Models
             foreach(string file in Directory.GetFiles(path))
             {
                 
-                DCMDocument dcm = new DCMDocument(file);
-                for (int i = 0; i < dcm.PageCount; i++)
+                DicomImage dcm = new  DicomImage(file);
+
+                for (int i = 0; i < dcm.FrameCount; i++)
                 {
-                    Bitmap bmp = dcm.Pages[i].ConvertToImage();
+                    dcm.Frame = i;
+                    Bitmap bmp = dcm.Bitmap();
                     bmp.Save(ImagePPath + "\\big" + (new FileInfo(file)).Name + i.ToString() + ".jpg");
                     SaveThumbnail((new FileInfo(file)).Name,i, bmp, 64, 64);
                     ImageList.Add(new DicomImageItem()

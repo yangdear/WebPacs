@@ -40,6 +40,20 @@ namespace WebViewer.Models
         [Display(Name ="所属医院")]
         public virtual Hospital Hospital { get; set; }
     }
+
+    public class PacsType
+    {
+        [Key]
+        public int PacsTypeId { get; set; }
+        [Display(Name = "检查类型")]
+        public string PacsTypeName { get; set; }
+        [Display(Name = "Pacs报告")]
+        public virtual ICollection<PacsReport> PacsReports { get; set; }
+        public PacsType()
+        {
+            PacsReports = new HashSet<PacsReport>();
+        }
+    }
     public class Patient
     {
         [Key]
@@ -57,12 +71,15 @@ namespace WebViewer.Models
         public DateTime Birthday { get; set; }
         [Display(Name = "申请科室")]
         public string RequestDept { get; set; }
+        [Display(Name ="病区")]
+        public string EndemicArea { get; set; }
+        [Display(Name ="病床号")]
+        public string BedNo { get; set; }
         [Display(Name = "Pacs报告")]
         public virtual ICollection<PacsReport> PacsReports { get; set; }
         public int? HospitalId { get; set; }
         [Display(Name ="所属医院")]
         public Hospital Hosptial { get; set; }
-
 
         public Patient()
         {
@@ -83,6 +100,9 @@ namespace WebViewer.Models
         public string DicomFileName { get; set; }
         [Display(Name = "初步诊断")]
         public string PreDiagnose { get; set; }
+        public int? PacsTypeId { get; set; }
+        [Display(Name = "检查类型")]
+        public PacsType PacsType { get; set; }
         [Display(Name = "检查部位")]
         public string CheckPoint { get; set; }
 
@@ -101,7 +121,7 @@ namespace WebViewer.Models
         public virtual ApplicationUser Uploader { get; set; }
         [Display(Name ="报告人")]
         public virtual ApplicationUser ReportUser { get; set; }
-        [Display(Name ="已添加报告")]
+        [Display(Name ="报告状态")]
         public ReportStateEnum ReportState { get; set; }
     }
 

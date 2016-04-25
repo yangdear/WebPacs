@@ -3,6 +3,7 @@
 /// <reference path="../neatupload/progress.js" />
 /// <reference path="../neatupload/swfupload.js" />
 /// <reference path="bootstrap.js" />
+/// <reference path="jquery.uploadfile.min.js" />
 /// <reference path="jquery.validate.min.js" />
 /// <reference path="jquery.validate.unobtrusive.js" />
 /// <reference path="jquery-1.10.2.js" />

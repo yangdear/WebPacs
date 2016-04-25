@@ -4,8 +4,37 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
 	<meta charset="utf-8" />
+    <link href="/Content/uploadfile.css" rel="stylesheet" />
+    <script src="/Scripts/jquery-2.2.3.min.js"></script>
+    <script src="/Scripts/jquery.uploadfile.js"></script>
+    <script>
+$(document).ready(function()
+{
+	$("#fileuploader").uploadFile({
+	url:"/PacsReports/UploadFile",
+	fileName: "myfile",
+	autoSubmit: false,
+	dragDropStr: "<span><b>拖入要上传的文件</b></span>",
+	uploadStr: "上传",
+	abortStr: "终止",
+	cancelStr: "取消",
+	deletelStr: "删除",
+	doneStr: "完成",
+	multiDragErrorStr: "不能拖入多个文件",
+	extErrorStr: "is not allowed. Allowed extensions: ",
+	duplicateErrorStr: "文件已经存在",
+	sizeErrorStr: "is not allowed. Allowed Max size: ",
+	uploadErrorStr: "Upload is not allowed",
+	maxFileCountErrorStr: " is not allowed. Maximum allowed files are:",
+	downloadStr: "Download",
+	customErrorKeyStr: "jquery-upload-file-error",
+
+	});
+});
+    </script>
 </head>
 <body>
+    <div id="fileuploader">Upload</div>
     <input id="Text1" type="text" style="width:300px;height:200px" />
     <textarea id="TextArea1" rows="2" cols="20"  style="width:300px;height:100px"></textarea>
 </body>

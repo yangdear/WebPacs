@@ -85,7 +85,7 @@ namespace WebViewer.Controllers
                 db.PacsReports.Add(pacsReport);
                 db.SaveChanges();
 
-                pacsReport.DicomFileName= SaveDicomFile(id, pacsReport.PacsReportId);
+                pacsReport.DicomFileName= SaveDicomFile(id);
                 db.Entry(pacsReport).State = EntityState.Modified;
 
                 db.SaveChanges();
@@ -96,9 +96,17 @@ namespace WebViewer.Controllers
             return View(pacsReport);
         }
 
-        private string SaveDicomFile(int Patientid, int PacsReportId)
+        [HttpPost]
+        public string UploadFile()
         {
-            string path = "~/upload/" + DateTime.Now.ToString("yyyyMMdd") + "/patient" + Patientid.ToString() + "/dicom" + PacsReportId.ToString();
+            return SaveDicomFile(1);
+        }
+        private string SaveDicomFile(int Patientid)
+        {
+            string path = "~/upload/" + DateTime.Now.ToString("yyyyMMdd") + "/patient" + Patientid.ToString();
+            if (!Directory.Exists(Server.MapPath(path)))
+                Directory.CreateDirectory(Server.MapPath(path));
+            path += "/dicom" + Directory.GetDirectories(Server.MapPath(path)).Length.ToString();
             if (!Directory.Exists(Server.MapPath(path)))
                 Directory.CreateDirectory(Server.MapPath(path));
 

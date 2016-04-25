@@ -39,8 +39,6 @@ namespace WebViewer.Models
                 .WithOptional(e => e.Hospital)
                 .HasForeignKey(e => e.HospitalId);
 
-
-
             modelBuilder.Entity<Hospital>()
                 .HasMany(e => e.Deptments)
                 .WithOptional(e => e.Hospital)
@@ -55,7 +53,14 @@ namespace WebViewer.Models
                 .HasMany(e => e.PacsReports)
                 .WithOptional(e => e.Patient)
                 .HasForeignKey(e => e.PatientId);
+
+            modelBuilder.Entity<PacsType>()
+                .HasMany(e => e.PacsReports)
+                .WithOptional(e => e.PacsType)
+                .HasForeignKey(e => e.PacsTypeId);
+
             base.OnModelCreating(modelBuilder);
+
         }
         public DbSet<Hospital> Hospitals { get; set; }
         public DbSet<Deptment> Deptments { get; set; }
